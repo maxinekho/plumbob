@@ -1,6 +1,6 @@
 {
-  "name": "v1",
-  "version": "0.0.0",
+  "name": "mood-ring",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -15,5 +15,27 @@
     "morgan": "~1.9.0",
     "serialport": "^7.0.2",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "description": "first working version of mood ring project",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebfergie/mood-ring.git"
+  },
+  "keywords": [
+    "LED",
+    "arduino",
+    "express",
+    "app",
+    "ejs",
+    "facial",
+    "rec"
+  ],
+  "author": "calebfergie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calebfergie/mood-ring/issues"
+  },
+  "homepage": "https://github.com/calebfergie/mood-ring#readme"
 }
