@@ -8,6 +8,7 @@ void setup() {
   Serial.begin(9600);   // We'll send debugging information via the Serial monitor
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
+  // consider adding a serial settimeout to avoid falling behind
 }
 
 void loop() {
@@ -47,4 +48,3 @@ void colorWipe(uint32_t c, uint8_t wait) {
     delay(wait);
   }
 }
-
