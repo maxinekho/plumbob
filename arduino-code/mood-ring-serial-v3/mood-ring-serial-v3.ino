@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #define PIN 6
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(59, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(21, PIN, NEO_GRB + NEO_KHZ800);
 
 int mood = 5;
 
@@ -41,11 +41,9 @@ void lightMood(int mood) {
 
 void colorWipe(uint32_t c, uint8_t wait) {
   for (uint16_t i = 0; i < strip.numPixels(); i++) {
-    if (i > 17) {
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
-    }
   }
 }
 
