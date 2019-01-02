@@ -20,7 +20,7 @@ Most of the customized code in this project can be found int the arduino folder 
 
 How to use this code:
 1. Clone or download this repository
-2. Open the project folder in your command line tool and run npm install
+2. Open the project folder in your command line tool and run `npm install`
 3. Upload the code in the 'Arduino code' folder to your arduino
 4. Start serving the express app by using `node bin/www` (or alternatively `nodemon bin/www` for automatic reloading)
 5. Open a browser and navigate to `localhost:3000`
