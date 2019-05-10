@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>Mood Ring</title>
+    <title>Plumbobs, IRL</title>
     <meta charset="utf-8">
     <link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+        /*@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);*/
 
 			body {
-				font-family: 'Lato';
+				font-family: 'Karla';
 				background-color: #f0f0f0;
 				margin: 0px auto;
 				max-width: 1150px;
@@ -24,8 +25,6 @@
 				transform : scaleX(-1);
 				-ms-filter : fliph; /*IE*/
 				filter : fliph; /*IE*/
-
-
 			}
 
 			#videoel {
@@ -34,8 +33,6 @@
 				transform : scaleX(-1);
 				-ms-filter : fliph; /*IE*/
 				filter : fliph; /*IE*/
-
-
 			}
 
 			#container {
@@ -48,15 +45,15 @@
 				margin-top : 50px;
 				margin-left : auto;
 				margin-right : auto;
-				max-width: 600px;
+				max-width: 400px;
 			}
 
 			h2 {
-				font-weight : 400;
+				font-weight : 600;
 			}
 
 			.btn {
-				font-family: 'Lato';
+				font-family: 'karla';
 				font-size: 16px;
 			}
 
@@ -65,7 +62,7 @@
 			}
 
 			#emotion_container {
-				width: 600px;
+				width: 400px;
 			}
 
 			#emotion_icons {
@@ -78,7 +75,7 @@
 				height : 40px;
 				margin-top: 5px;
 				/*margin-left : 13px;*/
-				margin-left : 35px;
+				margin-left : 30px;
 			}
 
 			#emotion_chart, #emotion_icons {
@@ -107,20 +104,6 @@
 			}
 		</script>
 
-    <!-- Commenting out developers google analytics -->
-    <!-- <script type="text/javascript">
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-32642923-1']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-
-		</script> -->
 </head>
 
 <body>
@@ -132,8 +115,8 @@
     <script src="./js/emotion_classifier.js"></script>
     <script src="./js/emotionmodel.js"></script>
     <div id="content">
-        <h2>Mood Ring</h2>
-        <p>This a test of emotion detection based on parameter output from <em>clmtrackr</em>.</p>
+        <h2>Plumbob, IRL</h2><br>
+        <p>Set up your plumbob by clicking "Start" below.</p><br><br>
         <div id="container">
             <video id="videoel" width="400" height="300" preload="auto" loop playsinline autoplay>
             </video>
@@ -141,16 +124,17 @@
         </div>
         <div id="emotion_container">
             <div id="emotion_icons">
-                <img class="emotion_icon" id="icon1" src="./media/icon_angry.png">
-                <img class="emotion_icon" id="icon2" src="./media/icon_sad.png">
-                <img class="emotion_icon" id="icon3" src="./media/icon_surprised.png">
-                <img class="emotion_icon" id="icon4" src="./media/icon_happy.png">
+                <img class="emotion_icon" id="icon1" src="./media/angry.png">
+                <img class="emotion_icon" id="icon2" src="./media/sad.png">
+                <img class="emotion_icon" id="icon3" src="./media/surprised.png">
+                <img class="emotion_icon" id="icon4" src="./media/happy.png">
             </div>
             <div id='emotion_chart'></div>
         </div>
+        <br><br>
         <div id="controls">
-            <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
-            <input class="btn" type="button" value="stop" disabled="disabled" onclick="stopVideo()" id="stopbutton"></input>
+            <input class="btn" type="button" value="Loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+            <input class="btn" type="button" value="Stop" disabled="disabled" onclick="stopVideo()" id="stopbutton"></input>
         </div>
         <script>
             var vid = document.getElementById('videoel');
@@ -176,10 +160,9 @@
 
             function enablestart() {
                 var startbutton = document.getElementById('startbutton');
-                startbutton.value = "start";
+                startbutton.value = "Start";
                 startbutton.disabled = null;
                 stopbutton.disabled = null;
-
             }
 
             function adjustVideoProportions() {
@@ -311,12 +294,17 @@
                     if (serialControl / 100 >= 1 && newFace === true) {
                         console.log("sending: " + emotionDict[topEmotion] + "(" + topEmotion + ")");
                         var xhr = new XMLHttpRequest();
+
                         xhr.open("POST", 'http://localhost:3000/', true);
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
                             emotion: topEmotion,
                             serialVal: emotionDict[topEmotion]
                         }));
+
+                        $.get('http://192.168.43.34/light?params='+emotionDict[topEmotion]);
+                        // const Http = new XMLHttpRequest();
+                        // Http.open("GET", 'http://192.168.1.105/light?params='+emotionDict[topEmotion], true);
                         serialControl = 0;
                         newFace = false;
                     }

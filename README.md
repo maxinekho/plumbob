@@ -16,7 +16,7 @@ See [my blog](http://www.blog.calebfergie.com/2018/12/04/mood-ring/) for more in
 
 #### More info
 
-Most of the customized code in this project can be found int the arduino folder and the `mood-ring.ejs` file in the `views` folder
+Most of the customized code in this project can be found in the arduino folder and the `mood-ring.ejs` file in the `views` folder
 
 How to use this code:
 1. Clone or download this repository
